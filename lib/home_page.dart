@@ -1,8 +1,4 @@
-import 'dart:async';
-import 'dart:io';
-import 'dart:math';
-
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cyferscript/about_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -66,6 +62,7 @@ class _HomePageState extends State<HomePage>
               onTap: () {
                 if (!_controller.isCompleted) {
                   _controller.forward();
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>AboutPage()));
                 } else {
                   _controller.reverse();
                 }
