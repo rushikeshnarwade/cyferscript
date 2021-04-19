@@ -21,21 +21,12 @@ class _HomePageState extends State<HomePage>
       vsync: this,
       duration: Duration(milliseconds: 500),
     );
-    _animation = CurvedAnimation(parent: _controller, curve: Curves.bounceIn);
-    // TODO: implement initState
-    // _controller.addListener(() {
-    //   setState(() {
-    //     setState(() {
-    //       _opacity = _controller.value;
-    //     });
-    //   });
-    // });
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.linear);
     super.initState();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _controller.dispose();
 
     super.dispose();
@@ -43,16 +34,28 @@ class _HomePageState extends State<HomePage>
 
   static double _opacity = 0;
 
+  void startAnimation() async {
+    if (!_controller.isCompleted) {
+      _controller.forward();
+    } else {
+      _controller.reverse();
+    }
+    Future.delayed(Duration(milliseconds: 1000), () {
+      if (!_controller.isDismissed)
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => AboutPage()));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double ceoImgWidth = width * 0.64;
-    print(width);
     return Scaffold(
       backgroundColor: Color(0xFF141414),
       body: Center(
         child: ListView(
-          scrollDirection: width < 650? Axis.vertical : Axis.horizontal,
+          scrollDirection: width < 650 ? Axis.vertical : Axis.horizontal,
           key: key,
           children: [
             SizedBox(
@@ -60,24 +63,18 @@ class _HomePageState extends State<HomePage>
             ),
             GestureDetector(
               onTap: () {
-                if (!_controller.isCompleted) {
-                  _controller.forward();
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>AboutPage()));
-                } else {
-                  _controller.reverse();
-                }
+                startAnimation();
               },
               child: AnimatedBuilder(
                 animation: _animation,
                 builder: (context, child) {
-                  // print(_controller.value);
                   return Transform.scale(
                     alignment: Alignment(0.05, -0.5),
                     scale: _controller.value < 0.1 ? 1 : _controller.value * 10,
                     child: child,
                   );
                 },
-                child: Image.asset("assets/ceo.png", width: ceoImgWidth),
+                child: Image.asset("assets/images/ceo.png", width: ceoImgWidth),
               ),
             ),
             Opacity(
@@ -89,7 +86,7 @@ class _HomePageState extends State<HomePage>
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Image.asset(
-                      "assets/logo.png",
+                      "assets/images/logo.png",
                       width: 150,
                     ),
                     SizedBox(

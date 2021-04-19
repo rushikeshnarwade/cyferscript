@@ -1,4 +1,6 @@
 import 'package:cyferscript/about_page.dart';
+import 'package:cyferscript/home_page.dart';
+import 'package:cyferscript/test.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,7 +12,11 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AboutPage(),
+      routes: {
+        '/#/': (_) => HomePage(),
+        '/#/about/': (_) => AboutPage(),
+      },
+      home: HomePage(),
     );
   }
 }

@@ -32,47 +32,44 @@ class _AboutPageState extends State<AboutPage> with TickerProviderStateMixin {
           },
           child: Stack(
             children: [
-              ListView(
-                shrinkWrap: true,
-                children: [
-                  // Container(
-                  //   alignment: Alignment.center,
-                  //   margin: EdgeInsets.only(top: 50),
-                  //   child: Text(
-                  //     "Our Team",
-                  //     style: GoogleFonts.josefinSans(
-                  //       color: Color(0xFFCECECE),
-                  //       fontSize: 32,
-                  //       fontWeight: FontWeight.w600,
-                  //     ),
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: 100,
-                  // ),
-                  Center(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        MemberWidget(
-                          image: "ceo.jpg",
-                          name: "Rishi",
-                          job: "CEO",
-                        ),
-                        MemberWidget(
-                          image: "prateek.jpg",
-                          name: "Prateek",
-                          job: "Technical Head",
-                        ),
-                        MemberWidget(
-                          image: "prateek2.jpg",
-                          name: "Akshay",
-                          job: "Designer",
-                        ),
-                      ],
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    // Container(
+                    //   alignment: Alignment.center,
+                    //   margin: EdgeInsets.only(top: 50),
+                    //   child: Text(
+                    //     "Our The Team",
+                    //     style: GoogleFonts.josefinSans(
+                    //       color: Color(0xFFCECECE),
+                    //       fontSize: 32,
+                    //       fontWeight: FontWeight.w600,
+                    //     ),
+                    //   ),
+                    // ),
+                    Center(
+                      child: Wrap(
+                        children: [
+                          MemberWidget(
+                            image: "assets/images/ceo.jpg",
+                            name: "Rishi",
+                            job: "CEO",
+                          ),
+                          MemberWidget(
+                            image: "assets/images/prateek.jpg",
+                            name: "Prateek",
+                            job: "Technical Head",
+                          ),
+                          MemberWidget(
+                            image: "assets/images/prateek2.jpg",
+                            name: "Akshay",
+                            job: "Designer",
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
